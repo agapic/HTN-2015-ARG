@@ -30,5 +30,5 @@ new website: 104.131.92.247
 internal 1: 104.236.251.33
 internal 2: 45.55.179.181
 internal 3: 45.55.183.167
-internal 4: 45.55.218.178
+internal 4: 45.55.218.178 (wscott / 2a492553aca6188a4)
 internal 5: 104.131.109.3
