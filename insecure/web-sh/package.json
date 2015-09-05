@@ -1,0 +1,17 @@
+{
+  "name": "web-sh",
+  "version": "0.0.0",
+  "description": "demo with term.js of shell on web -- unsecure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fengyang Wang",
+  "license": "GPLv3",
+  "dependencies": {
+    "express": "^4.13.3",
+    "pty.js": "^0.3.0",
+    "socket.io": "^1.3.6",
+    "term.js": "0.0.7"
+  }
+}

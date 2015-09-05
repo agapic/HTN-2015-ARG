@@ -1,0 +1,87 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/jquery.terminal.css')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(type='text/javascript', src='/javascripts/jquery.mousewheel-min.js')
+    script(type='text/javascript', src='/javascripts/jquery.terminal-0.8.8.min.js')
+    script(type='text/javascript').
+      var commandHandlers = {
+        ACCOUNT: function(terminal, tail) {
+          terminal.echo('Loading Account... This should not take long...');
+          fetch("/account/#{aid}")
+            .then(function(response) {
+              return response.json();
+            })
+            .then(function(body) {
+              terminal.echo('Account ID: #{aid}');
+              for (var account in body) {
+                terminal.echo(' ACCOUNT TYPE: ' + account.toUpperCase());
+                terminal.echo(' ... Balance: $' + (body[account] / 100).toFixed(2));
+              }
+            });
+        },
+        DEPOSIT: function(terminal, tail) {
+          terminal.echo("Unfortunately, we are unable to complete this transaction.");
+        },
+        HELP: function(terminal, tail) {
+          terminal.echo('ACCOUNT:  info about your account');
+          terminal.echo('DEPOSIT:  deposit money');
+          terminal.echo('HELP:     show this screen');
+          terminal.echo('TRANSFER: transfer money to/from chequing/savings')
+          terminal.echo('WITHDRAW: withdraw money');
+        },
+        TRANSFER: function(terminal, tail) {
+          if (tail.length !== 2) {
+            terminal.echo('To transfer from CHEQUING to SAVINGS, type:');
+            terminal.echo(' > TRANSFER CS 50.00' );
+            terminal.echo('To transfer from SAVINGS to CHEQUING, type:');
+            terminal.echo(' > TRANSFER SC 50.00' );
+          } else {
+            terminal.echo('Please wait... This may take some time...');
+            var mode = tail[0] === "CS" ? 1 : 0;
+            var amount = Math.round(tail[1] * 100);
+            fetch('/transfer/#{aid}/' + mode + '/' + amount, {method: 'POST'})
+              .then(function(response) {
+                return response.text();
+              })
+              .then(function(body) {
+                terminal.echo(body);
+                if (body.indexOf('completed') !== -1) {
+                  setTimeout(function() {
+                    terminal.echo("Transfer has been completed.");
+                  }, 7000);
+                }
+              });
+          }
+        },
+        WITHDRAW: function(terminal, tail) {
+          fetch("/withdraw/#{aid}", {method: 'POST'})
+            .then(function(response) {
+              return response.text();
+            })
+            .then(function(body) {
+              terminal.echo(body);
+            });
+        }
+      }
+      jQuery(document).ready(function($) {
+
+        $('#term').terminal(function(command, terminal) {
+          command = command.toUpperCase();
+          var head = command.split(/\s+/)[0];
+          var tail = command.split(/\s+/).slice(1);
+
+          if (commandHandlers.hasOwnProperty(head)) {
+            commandHandlers[head](terminal, tail);
+          }
+        }, {
+          greetings: 'The North Bank Terminal. Click to activate.\n' +
+                     'jQuery terminal Copyright &copy; 2011-2013 Jakub Jankiewicz <http://jcubic.pl>\n' +
+                     'Type HELP to begin.'
+        });
+      });
+  body
+    block content
