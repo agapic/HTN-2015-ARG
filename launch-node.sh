@@ -1,3 +1,5 @@
+export NODE_ENV=production
+
 cd bank-terminal
 npm start &
 
