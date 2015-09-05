@@ -30,3 +30,16 @@ internal 2: 45.55.179.181
 internal 3: 45.55.183.167
 internal 4: 45.55.218.178
 internal 5: 104.131.109.3
+
+
+## Misc details
+Katherin McDonald is on node 2
+Username: kmcdonald
+Password: ubLDGdPqBHrQKmU
+
+GitHub login:
+kmcdonald-thenorth
+dVv7G59a5BaV0XP8Pu4j
+
+GitHub OAuth token:
+b5cae863eb9e72de7e1106be1e5173e60ede4ba0
