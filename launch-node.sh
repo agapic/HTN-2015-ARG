@@ -1,5 +1,5 @@
 cd bank-terminal
-npm start
+npm start &
 
 cd ../splash
-PORT=80 npm start
+PORT=80 npm start &
