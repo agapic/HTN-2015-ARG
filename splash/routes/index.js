@@ -96,7 +96,7 @@ router.post('/~wscott/secret', function(req, res, next) {
   if (shash(req.body.password.trim()) === "84c355da8831b62075d2ad9133ce6512") {
     res.render('got-secret', {
       title: 'Welcome, Wesley Scott',
-      secret: '80200091cf180985fcc52693f6836af3a3f7c911cd83299ddf83c191279089ab982abcf6ba79754129ddb53f10ba651fae485aa09a647b243f34058127190'
+      secret: '8031708675011ca3efbd89832c2b90989eac06c29535cf4e92e6bc86b2e392dede3b86161e36acf5e93cb6ff425da2bfc0efa343c2fd3b5d1908938e1f3cf'
     });
   } else {
     res.render('get-secret', {
