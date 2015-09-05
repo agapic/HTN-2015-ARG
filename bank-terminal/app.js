@@ -9,6 +9,33 @@ var routes = require('./routes/index');
 var accounts = require('./routes/accounts');
 var withdrawal = require('./routes/withdrawal');
 var transfer = require('./routes/transfer');
+var basicAuth = require('basic-auth');
+
+var crypto = require('crypto');
+
+/**
+ * Simple basic auth middleware for use with Express 4.x.
+ *
+ * @example
+ * app.use('/api-requiring-auth', authenticate('username', 'password'));
+ *
+ * @param   {string}   username Expected username
+ * @param   {string}   password Expected password
+ * @returns {function} Express 4 middleware requiring the given credentials
+ */
+var authenticate = function(username, password) {
+  return function(req, res, next) {
+    var user = basicAuth(req);
+
+    if (!user || user.name !== username || crypto.createHash('md5').update(user.pass).digest('hex') !== password) {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+      return res.sendStatus(401);
+    }
+
+    next();
+  };
+};
+
 
 var app = express();
 
@@ -24,7 +51,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', authenticate('bank', '3bc679fd1de57b54c0c834d46bea73c2'), routes);
 app.use('/account', accounts);
 app.use('/withdraw', withdrawal);
 app.use('/transfer', transfer);
