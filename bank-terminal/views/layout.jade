@@ -5,8 +5,10 @@ html(lang="en")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/jquery.terminal.css')
     script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(type='text/javascript', src='https://www.promisejs.org/polyfills/promise-6.1.0.js')
     script(type='text/javascript', src='/javascripts/jquery.mousewheel-min.js')
     script(type='text/javascript', src='/javascripts/jquery.terminal-0.8.8.min.js')
+    script(type='text/javascript', src='/javascripts/fetch.js')
     script(type='text/javascript').
       var commandHandlers = {
         ACCOUNT: function(terminal, tail) {
@@ -80,7 +82,8 @@ html(lang="en")
         }, {
           greetings: 'The North Bank Terminal. Click to activate.\n' +
                      'jQuery terminal Copyright &copy; 2011-2013 Jakub Jankiewicz <http://jcubic.pl>\n' +
-                     'Type HELP to begin.'
+                     'Type HELP to begin.',
+          completion: Object.keys(commandHandlers).concat(Object.keys(commandHandlers).map(function(e) { return e.toLowerCase(); }))
         });
       });
   body

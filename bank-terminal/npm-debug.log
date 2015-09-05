@@ -1,26 +1,28 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'start' ]
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'completion',
+1 verbose cli   '--',
+1 verbose cli   'npm',
+1 verbose cli   'install',
+1 verbose cli   'es6-pr' ]
 2 info using npm@1.4.21
 3 info using node@v0.10.25
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart bank-terminal@0.0.0
-6 info start bank-terminal@0.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info bank-terminal@0.0.0 Failed to exec start script
-9 error bank-terminal@0.0.0 start: `node ./bin/www`
-9 error Exit status 8
-10 error Failed at the bank-terminal@0.0.0 start script.
-10 error This is most likely a problem with the bank-terminal package,
-10 error not with npm itself.
-10 error Tell the author that this fails on your system:
-10 error     node ./bin/www
-10 error You can get their info via:
-10 error     npm owner ls bank-terminal
-10 error There is likely additional logging output above.
-11 error System Linux 3.19.0-26-generic
-12 error command "/usr/bin/nodejs" "/usr/bin/npm" "start"
-13 error cwd /home/fengyang/Documents/Programming/htn/HTN-2015-ARG/bank-terminal
-14 error node -v v0.10.25
-15 error npm -v 1.4.21
-16 error code ELIFECYCLE
-17 verbose exit [ 1, true ]
+4 verbose registry.get https://registry.npmjs.org/-/short not expired, no request
+5 error TypeError: Object #<Object> has no method 'filter'
+5 error     at /usr/share/npm/lib/install.js:43:17
+5 error     at RegClient.get_ (/usr/share/npm/node_modules/npm-registry-client/lib/get.js:130:14)
+5 error     at RegClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/get.js:49:12)
+5 error     at evalmachine.<anonymous>:268:14
+5 error     at /usr/lib/nodejs/graceful-fs/graceful-fs.js:102:5
+5 error     at Object.oncomplete (evalmachine.<anonymous>:107:15)
+6 error If you need help, you may report this *entire* log,
+6 error including the npm and node versions, at:
+6 error     <http://github.com/npm/npm/issues>
+7 error System Linux 3.19.0-26-generic
+8 error command "/usr/bin/nodejs" "/usr/bin/npm" "completion" "--" "npm" "install" "es6-pr"
+9 error cwd /home/fengyang/Documents/Programming/htn/HTN-2015-ARG/bank-terminal
+10 error node -v v0.10.25
+11 error npm -v 1.4.21
+12 error type undefined_method
+13 verbose exit [ 1, true ]
