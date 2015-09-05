@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p Hi, Welcome to the Employee Area.
+  p.
+    I'm Don Glenn, your webmaster. If you have any questions please email me.
+    My email address is dglenn[@]northbank.net. Also visit my personal site,
+    <a href="/~dglenn">here</a> Thank you!!
+  if authorize > 0
+    p.
+      Wes has asked me to show this <a href="mail/isn.html">notice</a>. As is
+      usual for Wes I don't understand it, but here it is anyways.
+  if authorize > 1
+    p.
+      Hi, I see that you are an Admin user. Wes has asked me to provide the IP
+      address for the new website here. It's 104.131.92.247.
+
+    p.
+      Also, if you got a key like me, apparently we're supposed to recombine
+      them <a href="~wscott/keys">here</a>... but only if the CEO isn't available?
+      Dont worry I don't get it&nbsp;&nbsp;Either.
