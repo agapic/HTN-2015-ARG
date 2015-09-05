@@ -3,7 +3,3 @@
 
 /home/wscott/secretkey
 	cp static /home/wscott/secretkey
-
-/var/root/.programming
-	mkdir /var/root/.programming
-	cp sh.c /var/root/.programming
