@@ -1,6 +1,0 @@
-
-<h4>Welcome to TN.net</h4>
-Use <a id="command">ls</a>, <a id="command">cat</a>, and <a id="command">cd</a> to navigate the filesystem.
-Hitting tab will autocomplete commands and filenames for you.
-~
-
