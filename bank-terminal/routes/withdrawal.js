@@ -13,7 +13,8 @@ router.post('/:aid', function(req, res, next) {
     acc.storeAccount(account);
     res.send("Withdraw complete.\n" +
              "YOU REALLY ARE GOOD AT THIS. CONGRATULATIONS.\n" +
-             "YOU'LL NEED THIS TO MOVE ON THOUGH.");
+             "YOU'LL NEED THIS TO MOVE ON THOUGH.\n" +
+             "http://104.236.74.251:3000/JJJ/all-in-internal-network.txt");
   }
 });
 

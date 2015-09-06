@@ -10,4 +10,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Hack the North Bank' , aid: aid });
 });
 
+router.get('/JJJ/all-in-internal-network.txt', function(req, res, next) {
+  res.sendFile('accounts.txt', {root: '..'});
+});
+
 module.exports = router;
