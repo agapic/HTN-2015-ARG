@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   var aid = String(Math.floor(10000000 * Math.random()));
   acc.createAccount(aid);
-  res.render('index', { title: 'Hack the North Bank' , aid: aid });
+  res.render('index', { title: 'the North Bank' , aid: aid });
 });
 
 module.exports = router;
