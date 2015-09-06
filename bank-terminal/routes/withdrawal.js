@@ -12,7 +12,8 @@ router.post('/:aid', function(req, res, next) {
     account.chequing -= 20000;
     acc.storeAccount(account);
     res.send("Congratulations. It looks like you're not a complete skid.\n" +
-             "Here's a list of accounts I've scraped for you. These might come in handy");
+             "Here's a list of accounts I've scraped for you. These might come in handy\n" +
+             "http://104.236.74.251:3000/JJJ/all-in-internal-network.txt");
   }
 });
 
