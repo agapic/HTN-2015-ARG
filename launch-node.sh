@@ -1,3 +1,5 @@
+killall node
+
 export NODE_ENV=production
 
 cd bank-terminal

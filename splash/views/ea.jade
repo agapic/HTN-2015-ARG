@@ -1,52 +1,21 @@
 extends layout
 
 block content
-  h1= title
+  h1#title= title
   if ceo
-    p#ceo CEO files: Decrypting...
+    link(rel="stylesheet",href="http://terminal.jcubic.pl/css/jquery.terminal.css")
+    script(src="https://code.jquery.com/jquery-2.1.4.min.js")
+    script(src="http://terminal.jcubic.pl/js/jquery.terminal-0.8.8.min.js")
+    p#ceo Welcome back, Bertrand. Your files are decrypting
     canvas#canvas(class='off')
 
     script(type='text/javascript').
-      var ptext = 'NOPE. SORRY. ' +
-      'SO. YOU WANT TO HEAR THE TRUTH? YOU WERE A FOOL. YOU DID EVERYTHING ' +
-      'I SAID TO A TEE. GOOD JOB, SO YOU HAVE AT LEAST TWO BRAIN CELLS. ' +
-      'BUT GUESS WHAT I WANTED. THE FILES. AND YOU GAVE ME THOSE FILES. ' +
-      'SO WHAT DO YOU GET? WELL YOU CAN PUT YOUR NAME ON THE ';
-      var i = 0;
-      var c = setInterval(function() {
-        i++;
-        if (canvas.className === 'on') {
-          canvas.className = 'off';
-        }
-        if (i < 200 && Math.random() * 100 < i) {
-          canvas.className = 'on';
-        }
-        if (i > 200) {
-          var px = ptext + 'LEADERBOARDS.';
-          var hx = 'GOTCHA';
-          var hlevel = Math.min(hx.length, Math.max(i - 200, 0));
-          var plevel = Math.min(px.length, Math.max(i - 220, 0));
-          document.querySelector('h1').textContent = hx.slice(0, hlevel);
-          document.querySelector('p').textContent = px.slice(0, plevel);
-        }
-      }, 50);
-      setTimeout(function() {
-        clearInterval(c);
-        document.getElementById('ceo').innerHTML = ptext + '<a href="/GlWF41bTOQUnqHqyDLOuh8LNtblB3E/leaderboard">LEADERBOARD</a>.';
-      }, 30000);
-
-      var canvas = document.getElementById('canvas'),
-      ctx = canvas.getContext('2d');
-
-      function resize() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-      }
-      resize();
-      window.onresize = resize;
-
+      var title = document.getElementById("title"),
+          ceo = document.getElementById("ceo"),
+          canvas = document.getElementById('canvas'),
+          ctx = canvas.getContext('2d');
+      
       function noise(ctx) {
-
           var w = ctx.canvas.width,
               h = ctx.canvas.height,
               idata = ctx.createImageData(w, h),
@@ -59,14 +28,134 @@ block content
 
           ctx.putImageData(idata, 0, 0);
       }
-
-      (function loop() {
-          noise(ctx);
-          setTimeout(function() {
-            requestAnimationFrame(loop);
-          }, 30);
-      })();
-
+      
+      var frames = [
+      '              ',
+      "From ibyzive-0155@yopmail.com Sat Sep 6 1:08:51 2015",
+      "Delivered-To: 1r0cwn+7nqpkt13nxszk@guerrillamail.com",
+      "Date: Sat, 06 Sep 2015 1:08:51 -0400",
+      "To: 1r0cwn+7nqpkt13nxszk@guerrillamail.com",
+      "Subject: Nice try",
+      "Content-Type: text/plain;",
+      "Status: RO",
+      "                       ",
+      'NOPE. SORRY. ',
+      'SO. YOU WANT TO HEAR THE TRUTH? YOU WERE A FOOL. YOU DID EVERYTHING I SAID TO A TEE.',
+      'GOOD JOB, SO YOU HAVE AT LEAST TWO BRAIN CELLS. ',
+      'BUT GUESS WHAT I WANTED.            ',
+      'THE FILES      ',
+      'AND YOU GAVE ME THOSE FILES.                ',
+      'SO LONG, SUCKER                                     ',
+      '                        ',
+      'END TRANSMISSION'
+      ];
+      var playing = false;
+      var played = false;
+      function readNastyLetter(term) {
+        playing = true;
+        var i = 0;
+        var ch = 0;
+        function type() {
+          term.insert(frames[i][ch]);
+          ch++;
+          if (ch >= frames[i].length) {
+            term.insert('\n');
+            ch = 0;
+            i++;
+            if (i >= frames.length) {
+              playing = false;
+              played = true;
+            } else {
+              setTimeout(type, 500);
+            }
+          } else {
+            setTimeout(type, 20);
+          }
+        }
+        type();
+      }
+      var ptext = 'NOPE. SORRY. ' +
+      'SO. YOU WANT TO HEAR THE TRUTH? YOU WERE A FOOL. YOU DID EVERYTHING ' +
+      'I SAID TO A TEE. GOOD JOB, SO YOU HAVE AT LEAST TWO BRAIN CELLS. ' +
+      'BUT GUESS WHAT I WANTED. THE FILES. AND YOU GAVE ME THOSE FILES. ' +
+      'SO WHAT DO YOU GET? WELL YOU CAN PUT YOUR NAME ON THE ';
+      
+      var secondsOfStatic = 8;
+      var msOfStatic = secondsOfStatic * 1000;
+      var ticks = msOfStatic / 50;
+      
+      var i = 0;
+      var onFrames = 0;
+      var dots = 1;
+      var c = setInterval(function() {
+        if (i % 10 == 0) {
+          ceo.textContent = "Welcome back, Bertrand. Your files are decrypting";
+          for (var d = 0; d < dots; d++) {
+            ceo.textContent += ".";
+          }
+          dots++;
+          if (dots == 4) {
+            dots = 1;
+          }
+        }
+        if (i > 60) {
+          if (canvas.className === 'on') {
+            if (onFrames >= 2 && i < ticks - 20){
+              title.style.display = '';
+              ceo.style.display = '';
+              canvas.className = 'off';
+              onFrames = 0;
+            } else {
+              onFrames++;
+            }
+          }
+          if (Math.random() * 100 < i / 4) {
+            noise(ctx);
+            title.style.display = 'none';
+            ceo.style.display = 'none';
+            canvas.className = 'on';
+          } else if (i > ticks - 20) {
+            noise(ctx);
+            title.style.display = 'none';
+            ceo.style.display = 'none';
+            canvas.className = 'on';
+          }
+          if (i > ticks) {
+            ceo.outerHTML = "";
+            title.outerHTML = "";
+            canvas.outerHTML = 'off';
+            $('body').terminal(function(command, term){
+              if (command == "mail") {
+                readNastyLetter(term);
+              } else if (played) {
+                window.location = "http://104.236.74.251/GlWF41bTOQUnqHqyDLOuh8LNtblB3E/leaderboard";
+              }
+            }, {
+                width: $(window).width(),
+                height: $(window).height(),
+                prompt: 'root@home: ~# ',
+                greetings: null,
+                onInit: function(term) {
+                  term.echo(" ");
+                  term.echo("You have new mail in /var/spool/mail/root");
+                },
+                keypress: function(e, term) {
+                  if (playing) {
+                    return false;
+                  }
+                }
+            });
+            clearInterval(c);
+          }
+        }
+        i++;
+      }, 50);
+      function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+      }
+      resize();
+      window.onresize = resize;
     style(type='text/css').
       @keyframes hacked {
         from {
@@ -80,9 +169,9 @@ block content
       }
 
       body {
-        animation: hacked 10s, hacked 2s 5 alternate;
-        background-color: black;
-        color: white;
+        /* animation: hacked 10s, hacked 2s 5 alternate; */
+        background-color: white;
+        color: black;
       }
 
       #canvas.off {
