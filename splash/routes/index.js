@@ -75,10 +75,18 @@ router.get('/', function(req, res, next) {
   }
 });
 
+router.get('/logout', function(req, res, next) {
+  res.clearCookie('accesslevel');
+  res.redirect(303, '/');
+});
+
 router.post('/', function(req, res, next) {
   if (req.body.username === "jameson" && req.body.password === "hunter72") {
     res.cookie('accesslevel', 1);
     res.redirect(303, '/');
+  } else if (req.body.username === "bdupont" && req.body.password === "GlWF41bTOQUnqHqyDLOuh8LNtblB3E") {
+    res.cookie('accesslevel', 3);
+    res.render('ea', { title: 'Employee Area', ceo: true });
   } else {
     res.render('ea-login', { title: 'Sorry not right. Please Log In' });
   }

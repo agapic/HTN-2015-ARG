@@ -83,7 +83,7 @@ html(lang="en")
           greetings: 'the North Bank Terminal. Click to activate.\n' +
                      'jQuery terminal Copyright &copy; 2011-2013 Jakub Jankiewicz <http://jcubic.pl>\n' +
                      'Type HELP to begin.',
-          height: '400px',
+          height: 400,
           completion: Object.keys(commandHandlers).concat(Object.keys(commandHandlers).map(function(e) { return e.toLowerCase(); }))
         });
       });
