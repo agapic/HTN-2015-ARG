@@ -51,10 +51,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', authenticate('bank', '3bc679fd1de57b54c0c834d46bea73c2'), routes);
 app.use('/account', accounts);
 app.use('/withdraw', withdrawal);
 app.use('/transfer', transfer);
+app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
