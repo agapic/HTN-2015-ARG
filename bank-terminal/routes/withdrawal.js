@@ -11,7 +11,9 @@ router.post('/:aid', function(req, res, next) {
   } else {
     account.chequing -= 20000;
     acc.storeAccount(account);
-    res.send("Withdraw complete. Next step: NEXT STEP");
+    res.send("Withdraw complete.\n" +
+             "YOU REALLY ARE GOOD AT THIS. CONGRATULATIONS.\n" +
+             "YOU'LL NEED THIS TO MOVE ON THOUGH.");
   }
 });
 
