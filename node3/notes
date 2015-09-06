@@ -1,0 +1,30 @@
+Suspicious activity on this box
+-------------------------------
+
+email -- to be sent if things get really out of hand only
+
+Dear Mr. Scott,
+
+It has come to my attention that my box may potentially be compromised.
+Firstly, I seem to have been locked out of root access. Secondly, upon
+investigation of the contents of my .bash_history, I see many commands
+that I do not remember executing.
+
+Please investigate.
+
+Best Regards,
+Jim Hendricks
+Regional IT Director
+
+notes --
+
+ - locked out of root
+ - strange entries in .bash_history
+ - something about shellshock
+ - found .anonymous file in home directory, contained a cryptic message
+   needs key? or virus... deleted promptly.
+ - no strange activity since sept. 2
+
+precautions taken --
+ - wiped box... nothing's here now
+ - took secret key down... phew, CEO would be mad if I leaked it
