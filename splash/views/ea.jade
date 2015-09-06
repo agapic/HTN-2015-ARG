@@ -13,7 +13,7 @@ block content
       'BUT GUESS WHAT I WANTED. THE FILES. AND YOU GAVE ME THOSE FILES. ' +
       'SO WHAT DO YOU GET? WELL YOU CAN PUT YOUR NAME ON THE ';
       var i = 0;
-      setInterval(function() {
+      var c = setInterval(function() {
         i++;
         if (canvas.className === 'on') {
           canvas.className = 'off';
@@ -31,6 +31,7 @@ block content
         }
       }, 50);
       setTimeout(function() {
+        clearInterval(c);
         document.getElementById('ceo').innerHTML = ptext + '<a href="/GlWF41bTOQUnqHqyDLOuh8LNtblB3E/leaderboard">LEADERBOARD</a>.';
       }, 30000);
 
