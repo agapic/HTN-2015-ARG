@@ -512,18 +512,20 @@
       </svg>
 
       <p>
-        Solutions will be released gradually, starting from the beginning.
+        Solutions will be released gradually, starting from the beginning. At this
+        stage, solutions for the employee portal, admin panel, and bank terminal
+        have been released. If you have alternative solutions for any of these
+        parts, feel free to share on #random!.
       </p>
 
-      <h2>Start</h2>
-      <p>Difficulty: Medium</p>
+      <h2 id="start">Start</h2>
       <p>
         View the message from the anonymous character. Take note, or record, the
         credentials and IP addresses, as these seem like they will be important in
         the future.
       </p>
 
-      <h2>Employee</h2>
+      <h2 id="employee">Employee</h2>
       <p>
         Observe the login screen. Enter the username <q>jameson</q> (provided earlier)
         and the password <q>hunter72</q> (also provided earlier).
@@ -553,6 +555,11 @@
         Set this cookie to 2 with any method, and refresh the page.
       </p>
       <p>
+        Proceed to Admin.
+      </p>
+
+      <h2 id="employee">Admin</h2>
+      <p>
         At this point, there is one more link. Click it, and learn about the
         unusual security practices of the company. There is of course yet
         another link. Click it to observe a webpage that seems to be useless
@@ -562,6 +569,52 @@
       <p>
         Presently, there is nothing more to be done on this website. Navigate
         to the IP listed as the new website to proceed.
+      </p>
+
+      <h2 id="bank">Bank</h2>
+      <p>
+        This part can be done at any time before the internal nodes, but because
+        of its relative ease and convenient access, most chose to do it as soon
+        as they completed the admin panel. Interestingly, this part was originally
+        planned to take place after the internal nodes. However, because of how
+        easy it was, it was bumped to the very start.
+      </p>
+      <p>
+        There are indeed two ways to solve bank. Observe that transfers of more
+        money than exists in the account, which was most people's first plan,
+        do not work. At this point, visualize an internal model of how the server
+        verifies whether it is possible to transfer. The clear condition is that
+        the amonut to be transferred must be less than the amount remaining in
+        the account.
+      </p>
+      <p>
+        But wait! If that's the <em>only</em> condition, then what about transferring
+        a negative amount? We can get $200 in Chequing simply by transferring &minus;200
+        to Savings! And indeed, the server does not check that the amount must be
+        positive, so one solution is simply <code>transfer cs -200</code>.
+      </p>
+      <p>
+        The alternative solution was heavily hinted at by the time needed to transfer
+        funds. Obviously a server of our size does not really need ten seconds to
+        update two numbers, so it would seem that the wait time is deliberate.
+        Those who had heard of a story involving
+        <a href="http://sakurity.com/blog/2015/05/21/starbucks.html">starbucks gift cards</a>
+        may be reminded of how <q>race conditions</q> can be employed to get more
+        money. In this case, the obvious race condition is to send twice from savings
+        to chequing, because it seems the numbers had not yet been updated&mdash;so
+        the check of the second transfer way occur before the numbers update of the
+        first transfer. Therefore, this method involves simply two separate commands
+        of <code>transfer sc 100</code>.
+      </p>
+      <p>
+        At this point, simply withdraw to obtain your list of accounts. This list
+        will be useful for every internal node.
+      </p>
+      <p>
+        Both methods can be used to gain an aribitrary amount of money in either
+        account, but as a side note it seems that no method could be used to increase
+        the total amount of money in both accounts. If anyone has another alternative
+        solution that results in this superior outcome, feel free to share!
       </p>
     </main>
 
