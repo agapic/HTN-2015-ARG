@@ -5,4 +5,4 @@ admin.php => /var/www/html/admin.php
 php.conf => /etc/httpd/conf.d/php.conf
 jhendricks => /var/spool/mail/jhendricks
 
-Node: This node is running bash 3.1.0
+Note: This node is running bash 3.1.0
